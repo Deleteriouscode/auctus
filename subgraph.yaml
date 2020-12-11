@@ -1,27 +1,26 @@
 specVersion: 0.0.2
-description: Gravatar for Ethereum
-repository: https://github.com/graphprotocol/example-subgraph
+description: Auctus
+repository: https://github.com/Deleteriouscode/auctus-Token
 schema:
-  file: ./schema.graphql
+    file: ./schema.graphql
 dataSources:
-  - kind: ethereum/contract
-    name: Gravity
-    network: mainnet
-    source:
-      address: '0x2E645469f354BB4F5c8a05B3b30A929361cf77eC'
-      abi: Gravity
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - Gravatar
-      abis:
-        - name: Gravity
-          file: ./abis/Gravity.json
-      eventHandlers:
-        - event: NewGravatar(uint256,address,string,string)
-          handler: handleNewGravatar
-        - event: UpdatedGravatar(uint256,address,string,string)
-          handler: handleUpdatedGravatar
-      file: ./src/mapping.ts
+    - kind: ethereum/contract
+      name: Auctus
+      network: mainnet
+      source:
+          address: "0xc12d099be31567add4e4e4d0D45691C3F58f5663"
+          abi: Auctus
+          startBlock: 10841775
+      mapping:
+          kind: ethereum/events
+          apiVersion: 0.0.4
+          language: wasm/assemblyscript
+          entities:
+              - Token
+          abis:
+              - name: Auctus
+                file: ./abis/Auctus.json
+          eventHandlers:
+              - event: Transfer(indexed address,indexed address,uint256)
+                handler: handleTransfer
+          file: ./src/mapping.ts
